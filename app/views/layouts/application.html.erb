@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NRSApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+  </head>
+
+  <body>
+ <header>
+      <div class="header-logo">
+        <%= link_to("Nighit Routine Support","/") %>
+      </div>
+      <ul class="header-menus">
+       <% current_user = User.find_by(id: session[:user_id]) %>
+          <li>
+        <% if current_user %>
+          </li>
+       <li>
+        <%= link_to(current_user.name, "/users/#{current_user.id}") %>のアカウント
+       </li>
+        <li>
+          <%= link_to("置手紙置き場","/posts/index") %>
+        </li>
+        <li>
+          <%= link_to("置手紙追加","/posts/new") %>
+        </li>
+        <li>
+          <%= link_to("メンバー", "/users/index") %>
+        </li>
+        <li>
+            <%= link_to("ログアウト", "/logout", {method: "post"}) %>
+        </li>
+      <% else %>
+         <li>
+            <%= link_to("Nighit Routine Supportとは", "/about") %>
+        </li>
+         <li>
+          <%= link_to("新規登録", "/signup") %>
+        </li>
+         <li>
+          <%= link_to("ログイン", "/login") %>
+        </li>
+      <% end %>
+      </ul>
+    </header>
+      <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+<div class="main posts-index">
+  <div class="container">
+     <h1 class="form-heading">置手紙置き場</h1>
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+        <%= link_to(post.content, "/posts/#{post.id}") %>
+      </div>
+    
+    <% end %>
+  </div>
+</div>
